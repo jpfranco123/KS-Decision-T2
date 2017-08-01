@@ -160,7 +160,8 @@ public class BoardManager : MonoBehaviour {
 	//2. The weight and value vectors are uploaded
 	//3. The instance prefab is uploaded
 	void setKSInstance(){
-		int randInstance = GameManager.instanceRandomization[GameManager.trial-1];
+		//666
+		int randInstance = GameManager.instanceRandomization[GameManager.generalTrial-1];
 
 //		Text Quest = GameObject.Find("Question").GetComponent<Text>();
 //		String question = "Can you obtain at least $" + GameManager.ksinstances[randInstance].profit + " with at most " + GameManager.ksinstances[randInstance].capacity +"kg?";
@@ -357,8 +358,6 @@ public class BoardManager : MonoBehaviour {
 //			seeGrid();
 		} else if (sceneToSetup == 6) {
 			keysON = true;
-			Debug.Log ("keyon");
-			Debug.Log ("keysOnSet"+keysON);
 		}
 
 	}
@@ -440,13 +439,7 @@ public class BoardManager : MonoBehaviour {
 					highlightButton (boto);
 				}
 			}
-		} else if (GameManager.escena == 0) {
-			if (Input.GetKeyDown (KeyCode.Space)) {
-				GameManager.setTimeStamp ();
-				GameManager.changeToNextScene (2, -2);
-			}
 		} else if (GameManager.escena == 6) {
-			Debug.Log ("Space");
 			if (Input.GetKeyDown (KeyCode.Space)) {
 				keysON = false;
 				GameObject start = GameObject.Find("Start") as GameObject;
@@ -494,9 +487,10 @@ public class BoardManager : MonoBehaviour {
 		GameManager.participantID=pIDs;
 
 		//Activate Start Button and listener
-		//GameObject start = GameObject.Find("Start");
-		start.SetActive (true);
-		keysON = true;
+		//start.SetActive (true);
+		//keysON = true;
+		GameManager.setTimeStamp ();
+		GameManager.changeToNextScene (2, -2);
 
 	}
 
@@ -519,8 +513,6 @@ public class BoardManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		Debug.Log ("scene"+GameManager.escena);
-		Debug.Log ("keysOn"+keysON);
 		if (keysON) {
 			setKeyInput ();
 		}

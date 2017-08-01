@@ -34,6 +34,8 @@ public class GameManager : MonoBehaviour {
 	//Current block initialization
 	public static int block = 0;
 
+	public static int generalTrial=0;
+
 	private static bool showTimer;
 
 	//Modifiable Variables:
@@ -93,6 +95,8 @@ public class GameManager : MonoBehaviour {
 	private static bool soundON =false;
 
 	public static bool waitForTrigger = false;
+
+	private static float[] ITIs;
 
 
 	//A structure that contains the parameters of each instance
@@ -167,7 +171,9 @@ public class GameManager : MonoBehaviour {
 
 		} else if (escena == 1) {
 			trial++;
+			generalTrial = trial + (block - 1) * numberOfTrials;
 			showTimer = true;
+			Debug.Log ("blockINIT" + block);
 			boardScript.SetupScene (1);
 
 			tiempo = timeOnlyItems;
@@ -182,7 +188,8 @@ public class GameManager : MonoBehaviour {
 			totalTime = timeAnswer;
 		} else if (escena == 3) {
 			showTimer = false;
-			tiempo = Random.Range (timeRest1min, timeRest1max);
+			tiempo = ITIs[generalTrial-1];
+			//tiempo = Random.Range (timeRest1min, timeRest1max);
 			totalTime = tiempo;
 		} else if (escena == 4) {
 			trial = 0;
@@ -250,7 +257,9 @@ public class GameManager : MonoBehaviour {
 		string xyCoordinates = BoardManager.getItemCoordinates ();
 
 		//Get the instance n umber for this trial and add 1 because the instanceRandomization is linked to array numbering in C#, which starts at 0;
-		int instanceNum = instanceRandomization [trial + (block - 1) * numberOfTrials - 1] + 1;
+		///666
+		//int instanceNum = instanceRandomization [trial + (block - 1) * numberOfTrials - 1] + 1;
+		int instanceNum = instanceRandomization [generalTrial - 1] + 1;
 
 		int solutionQ = ksinstances [instanceNum - 1].solution;
 		int correct = (solutionQ == answer) ? 1 : 0;
@@ -479,6 +488,19 @@ public class GameManager : MonoBehaviour {
 				}
 			}
 
+			using (StreamReader sr3= new StreamReader (folderPathLoad + "paramMRI.txt")) {
+
+				// (This loop reads every line until EOF or the first blank line.)
+				string line3;
+				while (!string.IsNullOrEmpty((line3 = sr3.ReadLine())))
+				{
+					// Split each line around ':'
+					string[] tmp = line3.Split(new char[] {':'}, StringSplitOptions.RemoveEmptyEntries);
+					// Add the key-value pair to the dictionary:
+					dict.Add(tmp[0], tmp[1]);//int.Parse(dict[tmp[1]]);
+				}
+			}
+
 		} catch (Exception e) {
 			Debug.Log ("The file could not be read:");
 			Debug.Log (e.Message);
@@ -491,7 +513,7 @@ public class GameManager : MonoBehaviour {
 	//Assigns the parameters in the dictionary to variables
 	void assignVariables(Dictionary<string,string> dictionary){
 
-		//Assigns Parameters
+		//Assigns Parameters from param.txt
 		string timeRest1minS;
 		string timeRest1maxS;
 		string timeRest2S;
@@ -546,6 +568,7 @@ public class GameManager : MonoBehaviour {
 		if (dictionary.TryGetValue ("startBlock", out startBlockS)) {
 			block = int.Parse (startBlockS);
 		}
+		Debug.Log ("block"+block);
 
 
 
@@ -578,6 +601,15 @@ public class GameManager : MonoBehaviour {
 		BoardManager.totalAreaBill=Int32.Parse(totalAreaBillS);
 		BoardManager.totalAreaWeight=Int32.Parse(totalAreaWeightS);
 		//BoardManager.KSItemRadius=Convert.ToSingle(KSItemRadiusS);//Int32.Parse(KSItemRadiusS);
+
+
+		//Assigns paramMRI.txt parameters
+		string ITIsS;
+		dictionary.TryGetValue ("interTrialIntervals", out ITIsS);
+
+		//ITIs = Array.ConvertAll (ITIsS.Substring (1, ITIsS.Length - 2).Split (','), int.Parse);
+		ITIs = Array.ConvertAll (ITIsS.Substring (1, ITIsS.Length - 2).Split (','), Convert.ToSingle);
+
 	}
 
 	//66: Wrong function: items are repeated.
