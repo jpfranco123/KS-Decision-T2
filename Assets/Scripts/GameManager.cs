@@ -92,6 +92,8 @@ public class GameManager : MonoBehaviour {
 
 	private static bool soundON =false;
 
+	public static bool waitForTrigger = false;
+
 
 	//A structure that contains the parameters of each instance
 	public struct KSInstance
@@ -126,16 +128,22 @@ public class GameManager : MonoBehaviour {
 		//Initializes the game
 		boardScript = instance.GetComponent<BoardManager> ();
 
+		Scene scene = SceneManager.GetActiveScene();
+		escena = scene.buildIndex;
+		Debug.Log ("escena" + escena);
+
 		InitGame();
-		if (escena != 0) {
-			saveTimeStamp(escena);
-		}
+
 
 	}
 
 
 	//Initializes the scene. One scene is setup, other is trial, other is Break....
 	void InitGame(){
+
+		if (escena != 0) {
+			saveTimeStamp(escena);
+		}
 
 		/*
 		Scene Order: escena
@@ -145,20 +153,17 @@ public class GameManager : MonoBehaviour {
 		3= intertrial rest
 		4= interblock rest
 		5= end
+		6= Wait for trigger
 		*/
-		Scene scene = SceneManager.GetActiveScene();
-		escena = scene.buildIndex;
-		Debug.Log ("escena" + escena);
+
 		if (escena == 0) {
 			//Only uploads parameters and instances once.
 			block++;
 			loadParameters ();
 			loadKPInstance ();
 
-			//RandomizeKSInstances ();
 			randomizeButtons ();
 			boardScript.setupInitialScreen ();
-			//SceneManager.LoadScene (1);
 
 		} else if (escena == 1) {
 			trial++;
@@ -185,10 +190,12 @@ public class GameManager : MonoBehaviour {
 			showTimer = true;
 			tiempo = timeRest2;
 			totalTime = tiempo;
-			//Debug.Log ("TiempoRest=" + tiempo);
-
 			randomizeButtons ();
-			//SceneManager.LoadScene (1);
+		}  else if (escena == 6) {
+			//waitForTrigger = true;
+			//BoardManager.keysON =true;
+			showTimer = false;
+			boardScript.SetupScene(6);
 		}
 
 	}
@@ -196,10 +203,15 @@ public class GameManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 
-		if (escena != 0) {
+		if (escena != 0 && escena != 6) {
 			startTimer ();
 			pauseManager ();
 		}
+
+		if (escena == 6) {
+			triggerScannerF ();
+		}
+
 	}
 
 	//To pause press alt+p
@@ -212,6 +224,19 @@ public class GameManager : MonoBehaviour {
 			Time.timeScale = (Time.timeScale == 1) ? 0 : 1;
 			if(Time.timeScale==1){
 				errorInScene("Pause");
+			}
+		}
+	}
+
+	/// <summary>
+	/// Checks if there is a trigger from the scanner ("T"). When there is it loads the trial scene (escena=1)
+	/// </summary>
+	private void triggerScannerF (){
+		if(waitForTrigger){
+			if (Input.GetKey(KeyCode.T)){
+				//triggerScanner = true;
+				waitForTrigger = false;
+				SceneManager.LoadScene (1);
 			}
 		}
 	}
@@ -322,7 +347,7 @@ public class GameManager : MonoBehaviour {
 		string[] lines1 = new string[4];
 		lines1[0]="PartcipantID:" + participantID;
 		lines1[1] = "InitialTimeStamp:" + initialTimeStamp;
-		lines1[2]="1:ItemsNoQuestion;11:ItemsWithQuestion;2:AnswerScreen;21:ParticipantsAnswer;3:InterTrialScreen;4:InterBlockScreen;5:EndScreen";
+		lines1[2]="1:ItemsNoQuestion;11:ItemsWithQuestion;2:AnswerScreen;21:ParticipantsAnswer;3:InterTrialScreen;4:InterBlockScreen;5:EndScreen;6:WaitForTriggerScreen";
 		lines1[3]="block;trial;eventType;elapsedTime";
 		using (StreamWriter outputFile = new StreamWriter(folderPathSave + identifierName + "TimeStamps.txt",true)) {
 			foreach (string line in lines1)
@@ -477,6 +502,7 @@ public class GameManager : MonoBehaviour {
 		string numberOfInstancesS;
 		string instanceRandomizationS;
 		string timeOnlyItemsS;
+		string startBlockS;
 
 		dictionary.TryGetValue ("timeRest1min", out timeRest1minS);
 		dictionary.TryGetValue ("timeRest1max", out timeRest1maxS);
@@ -516,6 +542,11 @@ public class GameManager : MonoBehaviour {
 			instanceRandomization[i] = instanceRandomizationNo0 [i] - 1;
 		}
 //		}
+
+		if (dictionary.TryGetValue ("startBlock", out startBlockS)) {
+			block = int.Parse (startBlockS);
+		}
+
 
 
 		////Assigns LayoutParameters
@@ -581,19 +612,14 @@ public class GameManager : MonoBehaviour {
 
 	}
 
-//	//Saves and Changes to the next trial
-//	public static void changeToNextTrial(int newKPInstance, int answer){
-//		save (answer, timeTrial-tiempo);
-//		SceneManager.LoadScene(newKPInstance);
-//	}
-
 
 	//Takes care of changing the Scene to the next one (Except for when in the setup scene)
 	public static void changeToNextScene(int answer, int randomYes){
 		BoardManager.keysON = false;
 		if (escena == 0) {
 			saveHeaders ();
-			SceneManager.LoadScene (1);
+			//SceneManager.LoadScene (1);
+			SceneManager.LoadScene (6);
 		}
 		else if (escena == 1) {
 			SceneManager.LoadScene (2);
@@ -608,7 +634,8 @@ public class GameManager : MonoBehaviour {
 		} else if (escena == 3) {
 			changeToNextTrial ();
 		} else if (escena == 4) {
-			SceneManager.LoadScene (1);
+			//SceneManager.LoadScene (1);
+			SceneManager.LoadScene (6);
 		}
 
 	}

@@ -320,14 +320,13 @@ public class BoardManager : MonoBehaviour {
 			setKSInstance ();
 			//If the bool returned by LayoutObjectAtRandom() is false, then retry again:
 			//Destroy all items. Initialize list again and try to place them once more.
-			int nt=200;
+			int nt = 200;
 			bool itemsPlaced = false;
 			while (nt >= 1 && !itemsPlaced) {
 
-				GameObject[] items1 = GameObject.FindGameObjectsWithTag("Item");
-				foreach (GameObject item in items1)
-				{
-					Destroy(item);
+				GameObject[] items1 = GameObject.FindGameObjectsWithTag ("Item");
+				foreach (GameObject item in items1) {
+					Destroy (item);
 				}
 
 //				foreach (Item item in items)
@@ -345,7 +344,7 @@ public class BoardManager : MonoBehaviour {
 				GameManager.errorInScene ("Not enough space to place all items");
 			}
 
-		} else if(sceneToSetup ==2){
+		} else if (sceneToSetup == 2) {
 			
 			answer = 2;
 			setKSInstance ();
@@ -356,6 +355,10 @@ public class BoardManager : MonoBehaviour {
 			//1234
 //			InitialiseList ();
 //			seeGrid();
+		} else if (sceneToSetup == 6) {
+			keysON = true;
+			Debug.Log ("keyon");
+			Debug.Log ("keysOnSet"+keysON);
 		}
 
 	}
@@ -404,43 +407,51 @@ public class BoardManager : MonoBehaviour {
 		if (GameManager.escena == 2) {
 			//1: No/Yes 0: Yes/No
 			if (randomYes == 1) {
-				if (Input.GetKeyDown (KeyCode.A)) {
+				if (Input.GetKeyDown (KeyCode.B)) {
 					//Left
 					//GameManager.changeToNextScene (0, randomYes);
 					keysON = false;
-					answer=0;
-					GameObject boto = GameObject.Find("LEFTbutton") as GameObject;
-					highlightButton(boto);
+					answer = 0;
+					GameObject boto = GameObject.Find ("LEFTbutton") as GameObject;
+					highlightButton (boto);
 
-				} else if (Input.GetKeyDown (KeyCode.G)) {
+				} else if (Input.GetKeyDown (KeyCode.C)) {
 					//Right
 					//GameManager.changeToNextScene (1, randomYes);
 					keysON = false;
-					answer=1;
-					GameObject boto = GameObject.Find("RIGHTbutton") as GameObject;
-					highlightButton(boto);
+					answer = 1;
+					GameObject boto = GameObject.Find ("RIGHTbutton") as GameObject;
+					highlightButton (boto);
 				}
 			} else if (randomYes == 0) {
-				if (Input.GetKeyDown (KeyCode.A)) {
+				if (Input.GetKeyDown (KeyCode.B)) {
 					//Left
 					//GameManager.changeToNextScene (1, randomYes);
 					keysON = false;
-					answer=1;
-					GameObject boto = GameObject.Find("LEFTbutton") as GameObject;
-					highlightButton(boto);
-				} else if (Input.GetKeyDown (KeyCode.G)) {
+					answer = 1;
+					GameObject boto = GameObject.Find ("LEFTbutton") as GameObject;
+					highlightButton (boto);
+				} else if (Input.GetKeyDown (KeyCode.C)) {
 					//Right
 					//GameManager.changeToNextScene (0, randomYes);
 					keysON = false;
 					answer = 0;
-					GameObject boto = GameObject.Find("RIGHTbutton") as GameObject;
-					highlightButton(boto);
+					GameObject boto = GameObject.Find ("RIGHTbutton") as GameObject;
+					highlightButton (boto);
 				}
 			}
 		} else if (GameManager.escena == 0) {
-			if (Input.GetKeyDown (KeyCode.D)) {
+			if (Input.GetKeyDown (KeyCode.Space)) {
 				GameManager.setTimeStamp ();
 				GameManager.changeToNextScene (2, -2);
+			}
+		} else if (GameManager.escena == 6) {
+			Debug.Log ("Space");
+			if (Input.GetKeyDown (KeyCode.Space)) {
+				keysON = false;
+				GameObject start = GameObject.Find("Start") as GameObject;
+				start.SetActive (false);
+				GameManager.waitForTrigger = true;
 			}
 		}
 	}
@@ -508,7 +519,8 @@ public class BoardManager : MonoBehaviour {
 
 	// Update is called once per frame
 	void Update () {
-		
+		Debug.Log ("scene"+GameManager.escena);
+		Debug.Log ("keysOn"+keysON);
 		if (keysON) {
 			setKeyInput ();
 		}
