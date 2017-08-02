@@ -1,0 +1,7 @@
+PartcipantID:das
+InitialTimeStamp:10-13-23-456
+1:ItemsNoQuestion;11:ItemsWithQuestion;2:AnswerScreen;21:ParticipantsAnswer;3:InterTrialScreen;4:InterBlockScreen;5:EndScreen;6:WaitForTriggerScreen
+block;trial;eventType;elapsedTime
+1;0;6;35
+1;0;1;2845
+1;1;11;5957
