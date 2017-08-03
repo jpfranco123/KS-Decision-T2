@@ -1,0 +1,7 @@
+PartcipantID:ads
+InitialTimeStamp:11-19-03-253
+1:ItemsNoQuestion;11:ItemsWithQuestion;2:AnswerScreen;21:ParticipantsAnswer;3:InterTrialScreen;4:InterBlockScreen;5:EndScreen;6:WaitForTriggerScreen
+block;trial;eventType;elapsedTime
+1;0;6;82
+1;0;1;2687
+1;1;11;5843

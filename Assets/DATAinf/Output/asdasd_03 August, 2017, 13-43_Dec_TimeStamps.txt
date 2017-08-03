@@ -1,0 +1,9 @@
+PartcipantID:asdasd
+InitialTimeStamp:13-43-27-986
+1:ItemsNoQuestion;11:ItemsWithQuestion;2:AnswerScreen;21:ParticipantsAnswer;3:InterTrialScreen;4:InterBlockScreen;5:EndScreen;6:WaitForTriggerScreen
+block;trial;eventType;elapsedTime
+1;0;6;33
+1;0;1;1682
+1;1;11;10242
+1;1;1;22977
+1;2;11;26031

@@ -168,12 +168,12 @@ public class BoardManager : MonoBehaviour {
 //		Quest.text = question;
 
 		//question = "Can you pack $" + GameManager.ksinstances[randInstance].profit + " if your capacity is " + GameManager.ksinstances[randInstance].capacity +"kg?";
-		question = "$" + GameManager.ksinstances[randInstance].profit + System.Environment.NewLine + GameManager.ksinstances[randInstance].capacity +"kg?";
+		question = "$" + GameManager.ksinstances[randInstance].profit + System.Environment.NewLine + GameManager.ksinstances[randInstance].capacity +"g?";
 
 		ws = GameManager.ksinstances [randInstance].weights;
 		vs = GameManager.ksinstances [randInstance].values;
 
-		KSItemPrefab = (GameObject)Resources.Load ("KSItem3");
+		KSItemPrefab = (GameObject)Resources.Load ("KSItemV2");
 
 	}
 
@@ -208,7 +208,7 @@ public class BoardManager : MonoBehaviour {
 
 		//Sets the Text of the items
 		bill.GetComponentInChildren<Text>().text = "$" + vs[itemNumber];
-		weight.GetComponentInChildren<Text>().text = "" + ws[itemNumber]+ "kg";
+		weight.GetComponentInChildren<Text>().text = "" + ws[itemNumber]+ "g";
 
 		// This calculates area accrding to approach 1
 //		float areaItem1 = minAreaBill + (totalAreaBill - vs.Length * minAreaBill) * vs [itemNumber] / vs.Sum ();
