@@ -1,0 +1,4 @@
+PartcipantID:dfsd]
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;xyCoordinates;error
+1;1;2;0;28;0;23;(0,1.5)(7.5,4.5)(1.5,5.5)(5,5.5)(7,1)(2,1);
+1;2;2;0;28;0;20;(8,2)(6,5.5)(1.5,1)(1,4)(8,4.5)(3,6);

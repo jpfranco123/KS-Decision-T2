@@ -175,6 +175,12 @@ public class BoardManager : MonoBehaviour {
 
 		KSItemPrefab = (GameObject)Resources.Load ("KSItemV2");
 
+//		GameObject idG = GameObject.Find ("Id");
+//		if (idG != null){
+//			Text id = GameObject.Find("Id").GetComponent<Text>();
+//			id.text = "id" + randInstance;
+//		}
+
 	}
 
 	//Shows the question on the screen
@@ -394,8 +400,12 @@ public class BoardManager : MonoBehaviour {
 	public void updateTimer(){
 		// timer = GameObject.Find ("Timer").GetComponent<RectTransform> ();
 		// timer.sizeDelta = new Vector2 (timerWidth * (GameManager.tiempo / GameManager.totalTime), timer.rect.height);
-		Image timer = GameObject.Find ("Timer").GetComponent<Image> ();
-		timer.fillAmount = GameManager.tiempo / GameManager.totalTime;
+
+		GameObject ti = GameObject.Find ("Timer");
+		if (ti != null) {
+			Image timer = GameObject.Find ("Timer").GetComponent<Image> ();
+			timer.fillAmount = GameManager.tiempo / GameManager.totalTime;
+		}
 	}
 
 	//Sets the triggers for pressing the corresponding keys
