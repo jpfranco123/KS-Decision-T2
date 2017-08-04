@@ -1,0 +1,5 @@
+PartcipantID:sddff
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;xyCoordinates;error
+1;1;3;0;28;-1;23;(5.5,1)(8,1.5)(1,5)(7,5.5)(0.5,2.5)(5,6);Pause
+1;2;3;0;28;-1;20;(1,3)(7,5)(7,1.5)(2,6)(4.5,6)(0.5,0.5);Pause
+1;3;3;0;28;-1;42;(7.5,1)(0.5,1.5)(0.5,4.5)(8,4.5)(3,1)(2.5,5.5);Pause
