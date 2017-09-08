@@ -1,0 +1,6 @@
+PartcipantID:dfdsfds
+InitialTimeStamp:15-46-46-697
+1:ItemsNoQuestion;11:ItemsWithQuestion;2:AnswerScreen;21:ParticipantsAnswer;3:InterTrialScreen;4:InterBlockScreen;5:EndScreen;6:WaitForTriggerScreen
+block;trial;eventType;elapsedTime
+1;0;6;37
+1;0;1;2430

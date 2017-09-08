@@ -1,0 +1,2 @@
+PartcipantID:dfdsfds
+block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;xyCoordinates;error

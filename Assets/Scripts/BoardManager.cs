@@ -168,12 +168,18 @@ public class BoardManager : MonoBehaviour {
 //		Quest.text = question;
 
 		//question = "Can you pack $" + GameManager.ksinstances[randInstance].profit + " if your capacity is " + GameManager.ksinstances[randInstance].capacity +"kg?";
-		question = "$" + GameManager.ksinstances[randInstance].profit + System.Environment.NewLine + GameManager.ksinstances[randInstance].capacity +"kg?";
+		question = "$" + GameManager.ksinstances[randInstance].profit + System.Environment.NewLine + GameManager.ksinstances[randInstance].capacity +"g?";
 
 		ws = GameManager.ksinstances [randInstance].weights;
 		vs = GameManager.ksinstances [randInstance].values;
 
-		KSItemPrefab = (GameObject)Resources.Load ("KSItem3");
+		KSItemPrefab = (GameObject)Resources.Load ("KSItemV2");
+
+//		GameObject idG = GameObject.Find ("Id");
+//		if (idG != null){
+//			Text id = GameObject.Find("Id").GetComponent<Text>();
+//			id.text = "id" + randInstance;
+//		}
 
 	}
 
@@ -208,7 +214,7 @@ public class BoardManager : MonoBehaviour {
 
 		//Sets the Text of the items
 		bill.GetComponentInChildren<Text>().text = "$" + vs[itemNumber];
-		weight.GetComponentInChildren<Text>().text = "" + ws[itemNumber]+ "kg";
+		weight.GetComponentInChildren<Text>().text = "" + ws[itemNumber]+ "g";
 
 		// This calculates area accrding to approach 1
 //		float areaItem1 = minAreaBill + (totalAreaBill - vs.Length * minAreaBill) * vs [itemNumber] / vs.Sum ();
@@ -394,8 +400,12 @@ public class BoardManager : MonoBehaviour {
 	public void updateTimer(){
 		// timer = GameObject.Find ("Timer").GetComponent<RectTransform> ();
 		// timer.sizeDelta = new Vector2 (timerWidth * (GameManager.tiempo / GameManager.totalTime), timer.rect.height);
-		Image timer = GameObject.Find ("Timer").GetComponent<Image> ();
-		timer.fillAmount = GameManager.tiempo / GameManager.totalTime;
+
+		GameObject ti = GameObject.Find ("Timer");
+		if (ti != null) {
+			Image timer = GameObject.Find ("Timer").GetComponent<Image> ();
+			timer.fillAmount = GameManager.tiempo / GameManager.totalTime;
+		}
 	}
 
 	//Sets the triggers for pressing the corresponding keys
@@ -409,6 +419,7 @@ public class BoardManager : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.B)) {
 					//Left
 					//GameManager.changeToNextScene (0, randomYes);
+					GameManager.saveTimeStamp (21);
 					keysON = false;
 					answer = 0;
 					GameObject boto = GameObject.Find ("LEFTbutton") as GameObject;
@@ -417,6 +428,7 @@ public class BoardManager : MonoBehaviour {
 				} else if (Input.GetKeyDown (KeyCode.C)) {
 					//Right
 					//GameManager.changeToNextScene (1, randomYes);
+					GameManager.saveTimeStamp (21);
 					keysON = false;
 					answer = 1;
 					GameObject boto = GameObject.Find ("RIGHTbutton") as GameObject;
@@ -426,6 +438,7 @@ public class BoardManager : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.B)) {
 					//Left
 					//GameManager.changeToNextScene (1, randomYes);
+					GameManager.saveTimeStamp (21);
 					keysON = false;
 					answer = 1;
 					GameObject boto = GameObject.Find ("LEFTbutton") as GameObject;
@@ -433,6 +446,7 @@ public class BoardManager : MonoBehaviour {
 				} else if (Input.GetKeyDown (KeyCode.C)) {
 					//Right
 					//GameManager.changeToNextScene (0, randomYes);
+					GameManager.saveTimeStamp (21);
 					keysON = false;
 					answer = 0;
 					GameObject boto = GameObject.Find ("RIGHTbutton") as GameObject;

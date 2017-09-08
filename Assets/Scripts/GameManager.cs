@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour {
 	//Current block initialization
 	public static int block = 0;
 
+	//Total trial (As if no blocks were used)
 	public static int generalTrial=0;
 
 	private static bool showTimer;
@@ -660,7 +661,7 @@ public class GameManager : MonoBehaviour {
 				save (answer, timeTrial, randomYes, "");
 			} else {
 				save (answer, timeAnswer - tiempo, randomYes, "");
-				saveTimeStamp (21);
+				//saveTimeStamp (21);
 			}
 			SceneManager.LoadScene (3);
 		} else if (escena == 3) {
