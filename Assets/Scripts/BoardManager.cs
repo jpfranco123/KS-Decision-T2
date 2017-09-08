@@ -419,6 +419,7 @@ public class BoardManager : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.B)) {
 					//Left
 					//GameManager.changeToNextScene (0, randomYes);
+					GameManager.saveTimeStamp (21);
 					keysON = false;
 					answer = 0;
 					GameObject boto = GameObject.Find ("LEFTbutton") as GameObject;
@@ -427,6 +428,7 @@ public class BoardManager : MonoBehaviour {
 				} else if (Input.GetKeyDown (KeyCode.C)) {
 					//Right
 					//GameManager.changeToNextScene (1, randomYes);
+					GameManager.saveTimeStamp (21);
 					keysON = false;
 					answer = 1;
 					GameObject boto = GameObject.Find ("RIGHTbutton") as GameObject;
@@ -436,6 +438,7 @@ public class BoardManager : MonoBehaviour {
 				if (Input.GetKeyDown (KeyCode.B)) {
 					//Left
 					//GameManager.changeToNextScene (1, randomYes);
+					GameManager.saveTimeStamp (21);
 					keysON = false;
 					answer = 1;
 					GameObject boto = GameObject.Find ("LEFTbutton") as GameObject;
@@ -443,6 +446,7 @@ public class BoardManager : MonoBehaviour {
 				} else if (Input.GetKeyDown (KeyCode.C)) {
 					//Right
 					//GameManager.changeToNextScene (0, randomYes);
+					GameManager.saveTimeStamp (21);
 					keysON = false;
 					answer = 0;
 					GameObject boto = GameObject.Find ("RIGHTbutton") as GameObject;
