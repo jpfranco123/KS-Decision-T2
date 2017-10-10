@@ -237,7 +237,7 @@ public class GameManager : MonoBehaviour {
 	}
 
 	/// <summary>
-	/// Checks if there is a trigger from the scanner ("T"). When there is it loads the trial scene (escena=1)
+	/// Checks if there is a trigger from the scanner ("T"). When there is, it loads the trial scene (escena=1)
 	/// </summary>
 	private void triggerScannerF (){
 		if(waitForTrigger){

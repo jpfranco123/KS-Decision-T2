@@ -1,7 +1,7 @@
-timeRest1min:4
-timeRest1max:4
+timeRest1min:5
+timeRest1max:5
 timeRest2:0
-timeTrial:28
+timeTrial:25
 timeAnswer:2
 timeOnlyItems:3
 startBlock:1
