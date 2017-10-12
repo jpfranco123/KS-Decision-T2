@@ -417,18 +417,22 @@ public class BoardManager : MonoBehaviour {
 			//1: No/Yes 0: Yes/No
 			if (randomYes == 1) {
 				if (Input.GetKeyDown (KeyCode.B)) {
+				//if (Input.GetKeyDown (KeyCode.A)) {
 					//Left
 					//GameManager.changeToNextScene (0, randomYes);
 					GameManager.saveTimeStamp (21);
+					GameManager.participantAnswerTime = GameManager.tiempo;//This is an approximation: "tiempo" depends on update() rate.
 					keysON = false;
 					answer = 0;
 					GameObject boto = GameObject.Find ("LEFTbutton") as GameObject;
 					highlightButton (boto);
 
 				} else if (Input.GetKeyDown (KeyCode.C)) {
+				//} else if (Input.GetKeyDown (KeyCode.G)) {
 					//Right
 					//GameManager.changeToNextScene (1, randomYes);
 					GameManager.saveTimeStamp (21);
+					GameManager.participantAnswerTime = GameManager.tiempo;//This is an approximation: "tiempo" depends on update() rate.
 					keysON = false;
 					answer = 1;
 					GameObject boto = GameObject.Find ("RIGHTbutton") as GameObject;
@@ -436,17 +440,21 @@ public class BoardManager : MonoBehaviour {
 				}
 			} else if (randomYes == 0) {
 				if (Input.GetKeyDown (KeyCode.B)) {
+				//if (Input.GetKeyDown (KeyCode.A)) {
 					//Left
 					//GameManager.changeToNextScene (1, randomYes);
 					GameManager.saveTimeStamp (21);
+					GameManager.participantAnswerTime = GameManager.tiempo;//This is an approximation: "tiempo" depends on update() rate.
 					keysON = false;
 					answer = 1;
 					GameObject boto = GameObject.Find ("LEFTbutton") as GameObject;
 					highlightButton (boto);
 				} else if (Input.GetKeyDown (KeyCode.C)) {
+				//} else if (Input.GetKeyDown (KeyCode.G)) {
 					//Right
 					//GameManager.changeToNextScene (0, randomYes);
 					GameManager.saveTimeStamp (21);
+					GameManager.participantAnswerTime = GameManager.tiempo;//This is an approximation: "tiempo" depends on update() rate.
 					keysON = false;
 					answer = 0;
 					GameObject boto = GameObject.Find ("RIGHTbutton") as GameObject;
@@ -455,6 +463,7 @@ public class BoardManager : MonoBehaviour {
 			}
 		} else if (GameManager.escena == 6) {
 			if (Input.GetKeyDown (KeyCode.Space)) {
+				GameManager.saveTimeStamp (61);
 				keysON = false;
 				GameObject start = GameObject.Find("Start") as GameObject;
 				start.SetActive (false);

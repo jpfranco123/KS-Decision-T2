@@ -99,6 +99,9 @@ public class GameManager : MonoBehaviour {
 
 	private static float[] ITIs;
 
+	//Time of button press by the participant
+	public static float participantAnswerTime;
+
 
 	//A structure that contains the parameters of each instance
 	public struct KSInstance
@@ -243,6 +246,7 @@ public class GameManager : MonoBehaviour {
 		if(waitForTrigger){
 			if (Input.GetKey(KeyCode.T)){
 				//triggerScanner = true;
+				saveTimeStamp (62);//66 62 is actual trigger
 				waitForTrigger = false;
 				SceneManager.LoadScene (1);
 			}
@@ -347,7 +351,7 @@ public class GameManager : MonoBehaviour {
 		// Trial Info file headers
 		string[] lines = new string[2];
 		lines[0]="PartcipantID:" + participantID;
-		lines [1] = "block;trial;answer;correct;timeSpent;randomYes(1=Left:No/Right:Yes);instanceNumber;xyCoordinates;error";
+		lines [1] = "block;trial;answer;correct;timeSpentAprox;randomYes(1=Left:No/Right:Yes);instanceNumber;xyCoordinates;error";
 		using (StreamWriter outputFile = new StreamWriter(folderPathSave + identifierName + "TrialInfo.txt",true)) {
 			foreach (string line in lines)
 				outputFile.WriteLine(line);
@@ -357,7 +361,7 @@ public class GameManager : MonoBehaviour {
 		string[] lines1 = new string[4];
 		lines1[0]="PartcipantID:" + participantID;
 		lines1[1] = "InitialTimeStamp:" + initialTimeStamp;
-		lines1[2]="1:ItemsNoQuestion;11:ItemsWithQuestion;2:AnswerScreen;21:ParticipantsAnswer;3:InterTrialScreen;4:InterBlockScreen;5:EndScreen;6:WaitForTriggerScreen";
+		lines1[2]="1:ItemsNoQuestion;11:ItemsWithQuestion;2:AnswerScreen;21:ParticipantsAnswer;3:InterTrialScreen;4:InterBlockScreen;5:EndScreen;6:WaitForTriggerScreen;61:WaitForTriggerActive;62:Trigger";
 		lines1[3]="block;trial;eventType;elapsedTime";
 		using (StreamWriter outputFile = new StreamWriter(folderPathSave + identifierName + "TimeStamps.txt",true)) {
 			foreach (string line in lines1)
@@ -660,7 +664,8 @@ public class GameManager : MonoBehaviour {
 			if (answer == 2) {
 				save (answer, timeTrial, randomYes, "");
 			} else {
-				save (answer, timeAnswer - tiempo, randomYes, "");
+				//save (answer, timeAnswer - tiempo, randomYes, "");
+				save (answer, timeAnswer - participantAnswerTime, randomYes, "");
 				//saveTimeStamp (21);
 			}
 			SceneManager.LoadScene (3);

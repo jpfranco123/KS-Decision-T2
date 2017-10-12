@@ -1,6 +1,0 @@
-PartcipantID:nn
-InitialTimeStamp:14-29-02-297
-1:ItemsNoQuestion;11:ItemsWithQuestion;2:AnswerScreen;21:ParticipantsAnswer;3:InterTrialScreen;4:InterBlockScreen;5:EndScreen;6:WaitForTriggerScreen
-block;trial;eventType;elapsedTime
-1;0;6;29
-1;0;1;2235

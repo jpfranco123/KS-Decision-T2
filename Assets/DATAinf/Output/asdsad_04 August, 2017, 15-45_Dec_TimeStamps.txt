@@ -1,7 +1,0 @@
-PartcipantID:asdsad
-InitialTimeStamp:15-45-58-562
-1:ItemsNoQuestion;11:ItemsWithQuestion;2:AnswerScreen;21:ParticipantsAnswer;3:InterTrialScreen;4:InterBlockScreen;5:EndScreen;6:WaitForTriggerScreen
-block;trial;eventType;elapsedTime
-1;0;6;30
-1;0;1;1524
-1;1;11;4683
