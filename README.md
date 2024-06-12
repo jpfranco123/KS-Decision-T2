@@ -17,11 +17,11 @@ The task consists of 56 trials (7 blocks of 8 trials), each presenting a differe
 ![exp_design](https://github.com/jpfranco123/KS-Decision-T2/assets/26372744/77f7302c-9658-4f01-8a5c-a52c91131459)
 
 ### Game controls:
-- Every new block space bar has to be pressed before moving to the fixation point screen
+- At the start of every block, the space bar has to be pressed for the game to proceed to the fixation point screen.
 - Fixation point screen is presented at the beginning of each block until a ’T’ (scanner trigger code) is received.
-- Buttons for the left and right buttons are ‘b’ and ‘c’, respectively.
+- Buttons for the left and right answer buttons (YES/NO or NO/YES) are ‘b’ and ‘c’, respectively.
 
-Note: 
+**Note:**
 The key screen differences with the task used for the previous behavioral study are:
 - Bill luminance was changed, and
 - Weights were changed from ‘kg’ to ‘g’.
