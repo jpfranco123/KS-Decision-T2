@@ -1,5 +1,8 @@
 ## Knapsack Decision Task used for fMRI study
 
+This experimental task is associated with the project:
+Franco, J. P., Bossaerts, P., & Murawski, C. (2024, June 12). The neural dynamics associated with computational complexity. Retrieved from osf.io/g4h7y
+
 The task is coded in C# using the Unity Game Engine. 
 
 Here, you will find the standard Unity project folder structure. The project can be used to build the task using Unity. The fully built task is not provided in this repository due to storage space concerns. 
