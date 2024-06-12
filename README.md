@@ -1,6 +1,6 @@
 ## Knapsack Decision Task used for fMRI study
 
-The task is coded using Unity Game Engine with C#. 
+The task is coded in C# using the Unity Game Engine. 
 
 Here, you will find the standard Unity project folder structure. The project can be used to build the task using Unity. The fully built task is not provided in this repository due to storage space concerns. 
 
